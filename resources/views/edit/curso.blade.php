@@ -81,12 +81,18 @@
                                     </div>
                                     
                                     <div class="col-sm-4 form-group form-group--select">
-                                        
+                                        @if($curso->docente)
                                         {{ Form::select('id_docente', [null=>'Seleccione un docente'] + $docentes, $curso->docente->id_docente, ['class' => 'select2 form-control']) }}
+                                        @else
+                                        {{ Form::select('id_docente', [null=>'Seleccione un docente'] + $docentes, null, ['class' => 'select2 form-control']) }}
+                                        @endif
                                     </div>
                                     <div class="col-sm-4 form-group form-group--select">
-                                        
+                                        @if($curso->ciclo)
                                         {{ Form::select('id_ciclo', [null=>'Seleccione un ciclo'] + $ciclos, $curso->ciclo->id_ciclo, ['class' => 'select2 form-control']) }}
+                                        @else
+                                        {{ Form::select('id_ciclo', [null=>'Seleccione un ciclo'] + $ciclos, null, ['class' => 'select2 form-control']) }}
+                                        @endif
                                     </div>
                             </div>
                             {{ csrf_field() }}

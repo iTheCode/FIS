@@ -19,6 +19,7 @@ Route::get('/', function () {
 	return view('login');}
 );
 
+Route::get('/login', array('uses' => 'Controller@showLogin', 'as' => 'login'));
 Route::post('/login', array('uses' => 'Controller@doLogin'));
 Route::post('/register', array('uses' => 'Controller@doCreate'));
 

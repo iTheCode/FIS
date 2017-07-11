@@ -91,12 +91,11 @@
                                 <div class="col-sm-6">
                                     <h3 class="card-block__title">Fecha</h3>
                                     <br>
-
                                     
                                     <div class="input-group">
                                         <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
                                         <div class="form-group">
-                                            <input type="text" class="form-control datetime-picker flatpickr-input" placeholder="Seleccione un Fecha y Hora" name="date" readonly="readonly" value="{{ $cronograma->fecha_clase }}">
+                                            <input type="text" class="form-control datetime-picker flatpickr-input" placeholder="Seleccione un Fecha y Hora" name="date" readonly="readonly" value="{{ $cronograma->fecha_clase or ''}}">
                                             <i class="form-group__bar"></i>
                                         </div>
                                     </div>

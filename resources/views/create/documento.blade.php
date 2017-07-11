@@ -161,7 +161,7 @@
         <!-- Charts and maps-->
 
         <!-- App functions and actions -->
-        <script src="/js/app.min.js"></script>
+        <script src="/js/app2.min.js"></script>
         <script>
         $("#d").keyup(function(){
             $("#des").val($(this).val());

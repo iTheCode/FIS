@@ -84,11 +84,11 @@ class DocentesController extends BaseController
 	        $d = Docente::where('id_docente', $id);
 
 	        if($d->delete()){
-	        	return redirect()->route('docente')->with(['status' => 200 , 'message' => "Docente eliminado correctamente.", 'style' => 'alert-success']);
+	        	return redirect()->route('docentes')->with(['status' => 200 , 'message' => "Docente eliminado correctamente.", 'style' => 'alert-success']);
 	        }
 
 		} catch (Docente $e) {
-			return redirect()->route('docente')->with(['status' => 409, 'message' => $e->getMessage(), 'style' => 'alert-danger']);
+			return redirect()->route('docentes')->with(['status' => 409, 'message' => $e->getMessage(), 'style' => 'alert-danger']);
 		}
 	}
 }

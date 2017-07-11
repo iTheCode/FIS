@@ -14,9 +14,14 @@ use Illuminate\Support\Facades\Input;
 class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
+    public function showLogin(){
 
-    	public function doLogin()
-	{
+    	return view('login');
+
+    	
+
+    }
+	public function doLogin(){
 		try {
 			 $user_credentials = array(
 	            'email' => Input::get('username'),

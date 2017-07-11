@@ -3,6 +3,9 @@
 namespace App;
 
 class Helpers {
+		public static function ornull($element){
+			if(isset($element)){return $element;}else{return null;}
+		}
 		public static function get_list($list){
 			foreach($list as $item){
 				$array[$item->id_docente] = $item->nombres." ".$item->apellidos;
