@@ -45,7 +45,7 @@
 
             <section class="content">
                 <header class="content__title">
-                    <h1>Cronograma de Exámenes</h1>
+                    <h1>Registrar Asistencia</h1>
 
                     <div class="actions">
                             <div class="dropdown actions__item">
@@ -59,35 +59,40 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Docentes</h2>
+                        <h2 class="card-title">Nueva Asistencia</h2>
                     </div>
-
                     <div class="card-block">
-                        <table class="table table-striped mb-0">
-                            <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Curso</th>
-                                <th>Docente</th>
-                                <th>Fecha de Examen</th>
-                                <th>Tipo de Examen</th>
-                                <th>Acciones</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <?php $i = 1;?>
-                            <tr>
-                                <th scope="row">{{ $i++ }}</th>
-                                <td>Lino</td>
-                                <td>CareCuche</td>
-                                <td>Sto Domingo</td>
-                                <td>+519999999</td>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h3 class="card-block__title">Docente</h3>
+                                    <br>
 
-                                <td><i class="zmdi zmdi-edit zmdi-hc-fw"></i> <i class="zmdi zmdi-minus zmdi-hc-fw"></i></td>
-                            </tr>
-                            </tbody>
-                        </table><br>
-                        <div class="text-right"><a href="/create/cronograma"><button class="btn btn-info btn--icon waves-effect"><i class="zmdi zmdi-plus"></i></button></a></div>
+                                    <div class="form-group form-group--select">
+                                        <div class="select">
+                                            <select class="form-control">
+                                                <option>Select an Option</option>
+                                                <option>Option 1</option>
+                                                <option>Option 2</option>
+                                                <option>Option 3</option>
+                                                <option>Option 4</option>
+                                                <option>Option 5</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <h3 class="card-block__title">Fecha de Ingreso</h3>
+                                    <br>
+
+                                    <div class="form-group">
+                                        <input type="input" class="form-control" name="date" value="<?=date("Y-m-d H:m:s");?>" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn btn-outline-primary waves-effect">Registrar</button>
+                        </div>
                         
                     </div>
                 </div>

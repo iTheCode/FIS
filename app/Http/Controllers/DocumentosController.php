@@ -26,5 +26,11 @@ class DocumentosController extends BaseController
 		}
 		return view('documentos');
 	}
-	
+	public function createDocumento()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		}
+		return view('create.documento');
+	}
 }

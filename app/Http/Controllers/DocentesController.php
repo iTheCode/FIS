@@ -26,5 +26,11 @@ class DocentesController extends BaseController
 		}
 		return view('docentes');
 	}
-	
+	public function createDocente()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		}
+		return view('create.docente');
+	}
 }

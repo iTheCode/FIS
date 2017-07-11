@@ -3,13 +3,7 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use \App\Employee as Employee;
-use \App\Models\Authorization;	
-use \App\Models\Coverage;	
-use \App\Models\PayDocument;
-use \App\Models\PayEDocument;		
-use \App\Models\Patient;	
-use \App\Models\Area as Area;
+use \App\Models\Docente;	
 use View;
 use Redirect;
 use Illuminate\Support\Facades\Input;
@@ -27,4 +21,12 @@ class AsistenciaController extends BaseController
 		return view('asistencia');
 	}
 	
+	public function createAsistencia()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		}
+		$docentes = Docente::all();
+		return view('create.asistencia');
+	}
 }

@@ -40,7 +40,7 @@ Route::get('/create/documento', ['middleware' => 'auth',  'as' => 'create_docume
 Route::get('/create/cronograma', ['middleware' => 'auth',  'as' => 'create_documento', 'uses' => 'CronogramaController@createCronograma']);
 
 Route::get('/edit/docente/{id?}', ['middleware' => 'auth',  'as' => 'edit_docente', 'uses' => 'DocentesController@editDocente']);
-Route::get('/edit/asistencia/{id?}', ['middleware' => 'auth',  'as' => 'edit_asistencia', 'uses' => 'AsistenciaController@editAsistencia']);
+#Route::get('/edit/asistencia/{id?}', ['middleware' => 'auth',  'as' => 'edit_asistencia', 'uses' => 'AsistenciaController@editAsistencia']);
 Route::get('/edit/curso/{id?}', ['middleware' => 'auth',  'as' => 'edit_curso', 'uses' => 'CursosController@editCurso']);
 Route::get('/edit/horario/{id?}', ['middleware' => 'auth',  'as' => 'edit_horario', 'uses' => 'HorarioController@editHorario']);
 Route::get('/edit/documento/{id?}', ['middleware' => 'auth',  'as' => 'edit_documento', 'uses' => 'DocumentosController@editDocumento']);
@@ -58,7 +58,7 @@ Route::post('/create/cronograma', ['middleware' => 'auth',  'as' => 'post_docume
 
 
 Route::post('/edit/docente/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_docente', 'uses' => 'DocentesController@editDocente']);
-Route::post('/edit/asistencia/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_asistencia', 'uses' => 'AsistenciaController@editAsistencia']);
+#Route::post('/edit/asistencia/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_asistencia', 'uses' => 'AsistenciaController@editAsistencia']);
 Route::post('/edit/curso/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_curso', 'uses' => 'CursosController@editCurso']);
 Route::post('/edit/horario/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_horario', 'uses' => 'HorarioController@editHorario']);
 Route::post('/edit/documento/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_documento', 'uses' => 'DocumentosController@editDocumento']);

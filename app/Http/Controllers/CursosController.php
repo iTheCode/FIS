@@ -26,5 +26,11 @@ class CursosController extends BaseController
 		}
 		return view('cursos');
 	}
-	
+	public function createCurso()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		}
+		return view('create.curso');
+	}
 }

@@ -85,7 +85,7 @@
                             </tr>
                             </tbody>
                         </table><br>
-                        <div class="text-right"><a href="/create/docente"><button class="btn btn-info btn--icon waves-effect"><i class="zmdi zmdi-plus"></i></button></a></div>
+                        <div class="text-right"><a href="/create/curso"><button class="btn btn-info btn--icon waves-effect"><i class="zmdi zmdi-plus"></i></button></a></div>
                         
                     </div>
                 </div>

@@ -3,7 +3,7 @@
                 <div class="scrollbar-inner">
                     <div class="user">
                         <div class="user__info" data-toggle="dropdown">
-                            <img class="user__img" src="demo/img/profile-pics/1.png" alt="">
+                            <img class="user__img" src="/demo/img/profile-pics/1.png" alt="">
                             <div>
                                 <div class="user__name">{{ Auth::user()->name }}</div>
                                 <div class="user__email">{{ Auth::user()->email }}</div>

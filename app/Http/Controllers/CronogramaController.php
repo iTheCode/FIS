@@ -26,5 +26,12 @@ class CronogramaController extends BaseController
 		}
 		return view('cronograma');
 	}
-	
+		
+	public function createCronograma()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		}
+		return view('create.cronograma');
+	}
 }

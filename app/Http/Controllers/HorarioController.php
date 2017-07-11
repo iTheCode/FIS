@@ -26,5 +26,11 @@ class HorarioController extends BaseController
 		}
 		return view('horario');
 	}
-	
+	public function createHorario()
+	{
+		if (Auth::check()) {
+		    $user = Auth::user();
+		}
+		return view('create.horario');
+	}
 }
