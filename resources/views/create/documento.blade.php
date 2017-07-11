@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
         <link rel="stylesheet" href="/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
 
+        <link rel="stylesheet" href="/vendors/bower_components/dropzone/dist/dropzone.css">
         <!-- App styles -->
         <link rel="stylesheet" href="/css/app.min.css">
     </head>
@@ -45,7 +46,7 @@
 
             <section class="content">
                 <header class="content__title">
-                    <h1>Registrar Asistencia</h1>
+                    <h1>Crear Documento</h1>
 
                     <div class="actions">
                             <div class="dropdown actions__item">
@@ -56,48 +57,39 @@
                             </div>
                         </div>
                 </header>
-
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Nueva Asistencia</h2>
+                        <h2 class="card-title">Subir Documento</h2>
                     </div>
-                    <div class="card-block">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Docente</h3>
-                                    <br>
-
-                                    <div class="form-group form-group--select">
-                                        <div class="select">
-                                            <select class="form-control">
-                                                <option>Select an Option</option>
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
-                                            </select>
+                    <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Documento</h2>
+                                <small class="card-subtitle">Arrastre el documento a subir o clicke sobre la zona para elegir el documento.</small>
+                                <br><br>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" id="d" placeholder="Descripción del archivo">
+                                            <i class="form-group__bar"></i>
                                         </div>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Fecha de Ingreso</h3>
-                                    <br>
 
-                                    <div class="form-group">
-                                        <input type="input" class="form-control" name="date" value="<?=date("Y-m-d H:m:s");?>" disabled>
-                                    </div>
-                                </div>
+                            <div class="card-block">
+                                <form action="/create/documento" method="post" files="true" class="dropzone dz-clickable" id="dropzone-upload"><div class="dz-default dz-message"><span>Arrastre el documento.</span></div>
+                                
+                            {{ csrf_field() }}
+                                </form>
+                                <br><br><br>
+                
+                <form action="/create/documento/" method="post" id="document">
+                            {{ csrf_field() }}
+                                <input type="text" id="des" name="description" style="display:none">
+                                <input type="text" id="url" name="url"  style="display:none;">
+                                <input type="input" class="form-control" name="date" value="<?=date("Y-m-d H:m:s");?>" style="display:none;">
+                                <button type="submit" class="col-sm-1 btn btn-outline-primary waves-effect" id="submit">Subir</button>
                             </div>
-                            <button type="button" class="btn btn-outline-primary waves-effect">Registrar</button>
-                        </div>
-                        
                     </div>
+                    
                 </div>
-
-
+                </form>
 
                 <footer class="footer hidden-xs-down">
                     <p>© Direccion de Escuela - FIS.</p>
@@ -160,6 +152,7 @@
         <script src="/vendors/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
         <script src="/vendors/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
         <script src="/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+        <script src="/vendors/bower_components/dropzone/dist/min/dropzone.min.js"></script>
         <script src="/vendors/bower_components/salvattore/dist/salvattore.min.js"></script>
         <script src="/vendors/jquery.sparkline/jquery.sparkline.min.js"></script>
         <script src="/vendors/bower_components/moment/min/moment.min.js"></script>
@@ -169,5 +162,29 @@
 
         <!-- App functions and actions -->
         <script src="/js/app.min.js"></script>
+        <script>
+        $("#d").keyup(function(){
+            $("#des").val($(this).val());
+        });
+        $("#document").submit(function(e){
+            var desc = $("#des").val();
+            var url = $("#url").val();
+            if(!desc || !url){
+                e.preventDefault();
+            }
+        });
+        $("#dropzone-upload").dropzone({
+            uploadMultiple: false,
+            maxFiles: 1,
+            url: "/upload/documento",
+            addRemoveLinks:!0,
+            headers: {
+                'X-CSRF-Token': $('input[name="_token"]').val()
+            },
+            success: function( file, response ){
+                 $("#url").val(response); // <---- here is your filename
+            }
+        });
+        </script>
     </body>
 </html>

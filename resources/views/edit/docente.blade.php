@@ -45,7 +45,7 @@
 
             <section class="content">
                 <header class="content__title">
-                    <h1>Registrar Horario</h1>
+                    <h1>Registrar Docente</h1>
 
                     <div class="actions">
                             <div class="dropdown actions__item">
@@ -56,63 +56,44 @@
                             </div>
                         </div>
                 </header>
-                <form action="/create/horario" method="post">
+                <form action="/edit/docente/{{ $docente->id_docente }}" method="post">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Nueva Horario</h2>
+                        <h2 class="card-title">Nuevo Docente</h2>
                     </div>
                     <div class="card-block">
+                            <h3 class="card-block__title">Datos Generales: </h3><br>
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Docente</h3>
-                                    <br>
-
-                                    <div class="form-group form-group--select">
-                                        {{ Form::select('id_docente', [null=>'Seleccione un docente'] + $docentes, null, ['class' => 'select2 form-control']) }}
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Curso</h3>
-                                    <br>
-
-                                    <div class="form-group form-group--select">
-                                        {{ Form::select('id_curso', [null=>'Seleccione un curso'] + $cursos, null, ['class' => 'select2 form-control']) }}
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Día de Dictado</h3>
-                                    <br>
-
-                                    <div class="form-group form-group--select">
-                                        <div class="select">
-                                            <select class="form-control" name="day">
-                                                <option>Seleccione un Día</option>
-                                                <option>Lunes</option>
-                                                <option>Martes</option>
-                                                <option>Miércoles</option>
-                                                <option>Jueves</option>
-                                                <option>Viernes</option>
-                                                <option>Sábado</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Hora de Dictado</h3>
-                                    <br>
-
-                                    
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="time" name="hour" class="form-control" placeholder="">
+                                            <input type="text" class="form-control" name="name" placeholder="Nombres de Docente" value="{{ $docente->nombres }}">
                                             <i class="form-group__bar"></i>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="lastname" placeholder="Apellidos de Docente" value="{{ $docente->apellidos }}">
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
                             </div>
+                            <div class="row">
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="direction" placeholder="Dirección" value="{{ $docente->direccion }}">
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="phone" placeholder="Teléfono" maxlength="9" value="{{ $docente->telefono }}">
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
+                            </div>
+
                             {{ csrf_field() }}
-                            <button type="submit" class="btn btn-outline-primary waves-effect">Registrar</button>
+                            <button type="submit" class="btn btn-outline-primary waves-effect">Guardar</button>
                         </div>
                         
                     </div>

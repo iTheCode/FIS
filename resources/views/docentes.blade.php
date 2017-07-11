@@ -57,6 +57,16 @@
                         </div>
                 </header>
 
+                @if(Session::has('status'))
+                <div class="alert {{ Session::get('style') }} alert-dismissible fade show">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                {{ Session::get('message') }}
+                                
+                </div>
+                @endif
+
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Docentes</h2>
@@ -76,15 +86,17 @@
                             </thead>
                             <tbody>
                             <?php $i = 1;?>
+                                @foreach($docentes as $docente)
                             <tr>
                                 <th scope="row">{{ $i++ }}</th>
-                                <td>Lino</td>
-                                <td>CareCuche</td>
-                                <td>Sto Domingo</td>
-                                <td>+519999999</td>
+                                <td>{{ $docente->nombres or '' }}</td>
+                                <td>{{ $docente->apellidos or '' }}</td>
+                                <td>{{ $docente->direccion or '' }}</td>
+                                <td>{{ $docente->telefono or '' }}</td>
 
-                                <td><i class="zmdi zmdi-edit zmdi-hc-fw"></i> <i class="zmdi zmdi-minus zmdi-hc-fw"></i></td>
+                                <td><a href="{{ url('/edit/docente/'.$docente->id_docente) }}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a><a href="{{ url('/delete/docente/'.$docente->id_docente) }}"> <i class="zmdi zmdi-minus zmdi-hc-fw"></i></a></td>
                             </tr>
+                                @endforeach
                             </tbody>
                         </table><br>
                         <div class="text-right"><a href="/create/docente"><button class="btn btn-info btn--icon waves-effect"><i class="zmdi zmdi-plus"></i></button></a></div>

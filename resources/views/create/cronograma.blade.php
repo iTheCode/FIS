@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
         <link rel="stylesheet" href="/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
 
+        <link rel="stylesheet" href="/vendors/bower_components/flatpickr/dist/flatpickr.min.css" />
         <!-- App styles -->
         <link rel="stylesheet" href="/css/app.min.css">
     </head>
@@ -45,7 +46,7 @@
 
             <section class="content">
                 <header class="content__title">
-                    <h1>Registrar Asistencia</h1>
+                    <h1>Registrar Cronograma</h1>
 
                     <div class="actions">
                             <div class="dropdown actions__item">
@@ -56,10 +57,10 @@
                             </div>
                         </div>
                 </header>
-
+                <form action="/create/cronograma" method="post">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Nueva Asistencia</h2>
+                        <h2 class="card-title">Nuevo Examen</h2>
                     </div>
                     <div class="card-block">
                             <div class="row">
@@ -68,33 +69,45 @@
                                     <br>
 
                                     <div class="form-group form-group--select">
-                                        <div class="select">
-                                            <select class="form-control">
-                                                <option>Select an Option</option>
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
-                                            </select>
+                                        {{ Form::select('id_docente', [null=>'Seleccione un docente'] + $docentes, null, ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h3 class="card-block__title">Curso</h3>
+                                    <br>
+
+                                    <div class="form-group form-group--select">
+                                        {{ Form::select('id_curso', [null=>'Seleccione un curso'] + $cursos, null, ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h3 class="card-block__title">Tipo de Examen</h3>
+                                    <br>
+
+                                    <div class="form-group form-group--select">
+                                        {{ Form::select('id_tipo', [null=>'Seleccione un tipo'] + $tipos, null, ['class' => 'form-control']) }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <h3 class="card-block__title">Fecha</h3>
+                                    <br>
+
+                                    
+                                    <div class="input-group">
+                                        <span class="input-group-addon"><i class="zmdi zmdi-calendar"></i></span>
+                                        <div class="form-group">
+                                            <input type="text" class="form-control datetime-picker flatpickr-input" placeholder="Seleccione un Fecha y Hora" name="date" readonly="readonly">
+                                            <i class="form-group__bar"></i>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Fecha de Ingreso</h3>
-                                    <br>
-
-                                    <div class="form-group">
-                                        <input type="input" class="form-control" name="date" value="<?=date("Y-m-d H:m:s");?>" disabled>
-                                    </div>
-                                </div>
-                            </div>
-                            <button type="button" class="btn btn-outline-primary waves-effect">Registrar</button>
+                            </div><br>
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-outline-primary waves-effect">Registrar</button>
                         </div>
                         
                     </div>
+                    </form>
                 </div>
 
 
@@ -153,7 +166,7 @@
         <script src="/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
         <script src="/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
         <script src="/vendors/bower_components/Waves/dist/waves.min.js"></script>
-
+        <script src="/vendors/bower_components/flatpickr/dist/flatpickr.min.js"></script>
         <script src="/vendors/bower_components/flot/jquery.flot.js"></script>
         <script src="/vendors/bower_components/flot/jquery.flot.resize.js"></script>
         <script src="/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>

@@ -45,7 +45,7 @@
 
             <section class="content">
                 <header class="content__title">
-                    <h1>Registrar Horario</h1>
+                    <h1>Registrar Curso</h1>
 
                     <div class="actions">
                             <div class="dropdown actions__item">
@@ -56,63 +56,41 @@
                             </div>
                         </div>
                 </header>
-                <form action="/create/horario" method="post">
+                @if(Session::has('status'))
+                <div class="alert {{ Session::get('style') }} alert-dismissible fade show">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                {{ Session::get('message') }}
+                                
+                </div>
+                @endif
+                <form action="/edit/curso/{{ $curso->id_curso }}" method="post">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Nueva Horario</h2>
+                        <h2 class="card-title">Nuevo Curso</h2>
                     </div>
                     <div class="card-block">
+                            <h3 class="card-block__title">Datos Generales del Curso: </h3><br>
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Docente</h3>
-                                    <br>
-
-                                    <div class="form-group form-group--select">
-                                        {{ Form::select('id_docente', [null=>'Seleccione un docente'] + $docentes, null, ['class' => 'select2 form-control']) }}
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Curso</h3>
-                                    <br>
-
-                                    <div class="form-group form-group--select">
-                                        {{ Form::select('id_curso', [null=>'Seleccione un curso'] + $cursos, null, ['class' => 'select2 form-control']) }}
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Día de Dictado</h3>
-                                    <br>
-
-                                    <div class="form-group form-group--select">
-                                        <div class="select">
-                                            <select class="form-control" name="day">
-                                                <option>Seleccione un Día</option>
-                                                <option>Lunes</option>
-                                                <option>Martes</option>
-                                                <option>Miércoles</option>
-                                                <option>Jueves</option>
-                                                <option>Viernes</option>
-                                                <option>Sábado</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Hora de Dictado</h3>
-                                    <br>
-
-                                    
-                                    <div class="col-sm-6">
+                                    <div class="col-sm-4">
                                         <div class="form-group">
-                                            <input type="time" name="hour" class="form-control" placeholder="">
+                                            <input type="text" class="form-control" name="curso" placeholder="Nombres del Curso" value="{{ $curso->nombre_curso }}">
                                             <i class="form-group__bar"></i>
                                         </div>
                                     </div>
-                                </div>
+                                    
+                                    <div class="col-sm-4 form-group form-group--select">
+                                        
+                                        {{ Form::select('id_docente', [null=>'Seleccione un docente'] + $docentes, $curso->docente->id_docente, ['class' => 'select2 form-control']) }}
+                                    </div>
+                                    <div class="col-sm-4 form-group form-group--select">
+                                        
+                                        {{ Form::select('id_ciclo', [null=>'Seleccione un ciclo'] + $ciclos, $curso->ciclo->id_ciclo, ['class' => 'select2 form-control']) }}
+                                    </div>
                             </div>
                             {{ csrf_field() }}
-                            <button type="submit" class="btn btn-outline-primary waves-effect">Registrar</button>
+                            <button type="submit" class="btn btn-outline-primary waves-effect">Guardar</button>
                         </div>
                         
                     </div>

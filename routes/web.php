@@ -28,8 +28,8 @@ Route::get('/asistencia', ['middleware' => 'auth',  'as' => 'asistencia', 'uses'
 Route::get('/cursos', ['middleware' => 'auth',  'as' => 'cursos', 'uses' => 'CursosController@showCursos']);
 Route::get('/horario', ['middleware' => 'auth',  'as' => 'horario', 'uses' => 'HorarioController@showHorario']);
 Route::get('/documentos', ['middleware' => 'auth',  'as' => 'documentos', 'uses' => 'DocumentosController@showDocumentos']);
-Route::get('/cronograma', ['middleware' => 'auth',  'as' => 'documentos', 'uses' => 'CronogramaController@showCronograma']);
-Route::get('/documento/{id?}', ['middleware' => 'auth',  'as' => 'documentos', 'uses' => 'DocumentosController@viewDocument']);
+Route::get('/cronograma', ['middleware' => 'auth',  'as' => 'cronograma', 'uses' => 'CronogramaController@showCronograma']);
+Route::get('/documento/{id?}', ['middleware' => 'auth',  'as' => 'documento', 'uses' => 'DocumentosController@viewDocument']);
 
 //Create Routes
 Route::get('/create/docente', ['middleware' => 'auth',  'as' => 'create_docente', 'uses' => 'DocentesController@createDocente']);
@@ -44,7 +44,7 @@ Route::get('/edit/docente/{id?}', ['middleware' => 'auth',  'as' => 'edit_docent
 Route::get('/edit/curso/{id?}', ['middleware' => 'auth',  'as' => 'edit_curso', 'uses' => 'CursosController@editCurso']);
 Route::get('/edit/horario/{id?}', ['middleware' => 'auth',  'as' => 'edit_horario', 'uses' => 'HorarioController@editHorario']);
 Route::get('/edit/documento/{id?}', ['middleware' => 'auth',  'as' => 'edit_documento', 'uses' => 'DocumentosController@editDocumento']);
-Route::get('/edit/cronograma/{id?}', ['middleware' => 'auth',  'as' => 'edit_documento', 'uses' => 'CronogramaController@editCronograma']);
+Route::get('/edit/cronograma/{id?}', ['middleware' => 'auth',  'as' => 'edit_cronograma', 'uses' => 'CronogramaController@editCronograma']);
 
 //Post Routes
 
@@ -56,19 +56,20 @@ Route::post('/create/horario', ['middleware' => 'auth',  'as' => 'post_horario',
 Route::post('/create/documento', ['middleware' => 'auth',  'as' => 'post_documento', 'uses' => 'DocumentosController@postDocumento']);
 Route::post('/create/cronograma', ['middleware' => 'auth',  'as' => 'post_documento', 'uses' => 'CronogramaController@postCronograma']);
 
+Route::post('/upload/documento', ['middleware' => 'auth',  'as' => 'upload_documento', 'uses' => 'DocumentosController@uploadDocumento']);
 
-Route::post('/edit/docente/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_docente', 'uses' => 'DocentesController@editDocente']);
-#Route::post('/edit/asistencia/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_asistencia', 'uses' => 'AsistenciaController@editAsistencia']);
-Route::post('/edit/curso/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_curso', 'uses' => 'CursosController@editCurso']);
-Route::post('/edit/horario/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_horario', 'uses' => 'HorarioController@editHorario']);
-Route::post('/edit/documento/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_documento', 'uses' => 'DocumentosController@editDocumento']);
-Route::post('/edit/cronograma/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_documento', 'uses' => 'CronogramaController@editCronograma']);
+Route::post('/edit/docente/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_docente', 'uses' => 'DocentesController@posteditDocente']);
+#Route::post('/edit/asistencia/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_asistencia', 'uses' => 'AsistenciaController@posteditAsistencia']);
+Route::post('/edit/curso/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_curso', 'uses' => 'CursosController@posteditCurso']);
+Route::post('/edit/horario/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_horario', 'uses' => 'HorarioController@posteditHorario']);
+Route::post('/edit/documento/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_documento', 'uses' => 'DocumentosController@posteditDocumento']);
+Route::post('/edit/cronograma/{id?}', ['middleware' => 'auth',  'as' => 'post_edit_documento', 'uses' => 'CronogramaController@posteditCronograma']);
 
 
-Route::post('/delete/docente/{id?}', ['middleware' => 'auth',  'as' => 'delete_docente', 'uses' => 'DocentesController@deleteDocente']);
-Route::post('/delete/asistencia/{id?}', ['middleware' => 'auth',  'as' => 'delete_asistencia', 'uses' => 'AsistenciaController@deleteAsistencia']);
-Route::post('/delete/curso/{id?}', ['middleware' => 'auth',  'as' => 'delete_curso', 'uses' => 'CursosController@deleteCurso']);
-Route::post('/delete/horario/{id?}', ['middleware' => 'auth',  'as' => 'delete_horario', 'uses' => 'HorarioController@deleteHorario']);
-Route::post('/delete/documento/{id?}', ['middleware' => 'auth',  'as' => 'delete_documento', 'uses' => 'DocumentosController@deleteDocumento']);
-Route::post('/delete/cronograma/{id?}', ['middleware' => 'auth',  'as' => 'delete_documento', 'uses' => 'CronogramaController@deleteCronograma']);
+Route::get('/delete/docente/{id?}', ['middleware' => 'auth',  'as' => 'delete_docente', 'uses' => 'DocentesController@deleteDocente']);
+Route::get('/delete/asistencia/{id?}', ['middleware' => 'auth',  'as' => 'delete_asistencia', 'uses' => 'AsistenciaController@deleteAsistencia']);
+Route::get('/delete/curso/{id?}', ['middleware' => 'auth',  'as' => 'delete_curso', 'uses' => 'CursosController@deleteCurso']);
+Route::get('/delete/horario/{id?}', ['middleware' => 'auth',  'as' => 'delete_horario', 'uses' => 'HorarioController@deleteHorario']);
+Route::get('/delete/documento/{id?}', ['middleware' => 'auth',  'as' => 'delete_documento', 'uses' => 'DocumentosController@deleteDocumento']);
+Route::get('/delete/cronograma/{id?}', ['middleware' => 'auth',  'as' => 'delete_documento', 'uses' => 'CronogramaController@deleteCronograma']);
 

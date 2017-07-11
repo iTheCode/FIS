@@ -10,6 +10,7 @@
         <link rel="stylesheet" href="/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
         <link rel="stylesheet" href="/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
 
+        <link rel="stylesheet" href="/vendors/bower_components/dropzone/dist/dropzone.css">
         <!-- App styles -->
         <link rel="stylesheet" href="/css/app.min.css">
     </head>
@@ -45,7 +46,7 @@
 
             <section class="content">
                 <header class="content__title">
-                    <h1>Registrar Horario</h1>
+                    <h1>Crear Documento</h1>
 
                     <div class="actions">
                             <div class="dropdown actions__item">
@@ -56,67 +57,26 @@
                             </div>
                         </div>
                 </header>
-                <form action="/create/horario" method="post">
+
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Nueva Horario</h2>
+                        <h2 class="card-title">Subir Documento</h2>
                     </div>
-                    <div class="card-block">
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Docente</h3>
-                                    <br>
-
-                                    <div class="form-group form-group--select">
-                                        {{ Form::select('id_docente', [null=>'Seleccione un docente'] + $docentes, null, ['class' => 'select2 form-control']) }}
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Curso</h3>
-                                    <br>
-
-                                    <div class="form-group form-group--select">
-                                        {{ Form::select('id_curso', [null=>'Seleccione un curso'] + $cursos, null, ['class' => 'select2 form-control']) }}
-                                    </div>
-                                </div>
-
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Día de Dictado</h3>
-                                    <br>
-
-                                    <div class="form-group form-group--select">
-                                        <div class="select">
-                                            <select class="form-control" name="day">
-                                                <option>Seleccione un Día</option>
-                                                <option>Lunes</option>
-                                                <option>Martes</option>
-                                                <option>Miércoles</option>
-                                                <option>Jueves</option>
-                                                <option>Viernes</option>
-                                                <option>Sábado</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Hora de Dictado</h3>
-                                    <br>
-
-                                    
-                                    <div class="col-sm-6">
-                                        <div class="form-group">
-                                            <input type="time" name="hour" class="form-control" placeholder="">
-                                            <i class="form-group__bar"></i>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="card">
+                            <div class="card-header">
+                                <h2 class="card-title">Documento</h2>
+                                <small class="card-subtitle">Arrastre el documento a subir o clicke sobre la zona para elegir el documento.</small>
                             </div>
-                            {{ csrf_field() }}
-                            <button type="submit" class="btn btn-outline-primary waves-effect">Registrar</button>
-                        </div>
-                        
+
+                            <div class="card-block">
+                                <form class="dropzone dz-clickable" id="dropzone-upload"><div class="dz-default dz-message"><span>Arrastre el documento.</span></div></form>
+                                
+                                <br><br><br>
+
+                                <button type="button" class="col-sm-1 btn btn-outline-primary waves-effect">Subir</button>
+                            </div>
                     </div>
-                    </form>
+                    
                 </div>
 
 
@@ -182,6 +142,7 @@
         <script src="/vendors/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
         <script src="/vendors/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
         <script src="/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+        <script src="/vendors/bower_components/dropzone/dist/min/dropzone.min.js"></script>
         <script src="/vendors/bower_components/salvattore/dist/salvattore.min.js"></script>
         <script src="/vendors/jquery.sparkline/jquery.sparkline.min.js"></script>
         <script src="/vendors/bower_components/moment/min/moment.min.js"></script>

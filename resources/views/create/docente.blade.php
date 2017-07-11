@@ -45,7 +45,7 @@
 
             <section class="content">
                 <header class="content__title">
-                    <h1>Registrar Asistencia</h1>
+                    <h1>Registrar Docente</h1>
 
                     <div class="actions">
                             <div class="dropdown actions__item">
@@ -56,45 +56,48 @@
                             </div>
                         </div>
                 </header>
-
+                <form action="/create/docente" method="post">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Nueva Asistencia</h2>
+                        <h2 class="card-title">Nuevo Docente</h2>
                     </div>
                     <div class="card-block">
+                            <h3 class="card-block__title">Datos Generales: </h3><br>
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Docente</h3>
-                                    <br>
-
-                                    <div class="form-group form-group--select">
-                                        <div class="select">
-                                            <select class="form-control">
-                                                <option>Select an Option</option>
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
-                                            </select>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="name" placeholder="Nombres de Docente">
+                                            <i class="form-group__bar"></i>
                                         </div>
                                     </div>
-                                </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="lastname" placeholder="Apellidos de Docente">
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
                             </div>
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Fecha de Ingreso</h3>
-                                    <br>
-
-                                    <div class="form-group">
-                                        <input type="input" class="form-control" name="date" value="<?=date("Y-m-d H:m:s");?>" disabled>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="direction" placeholder="Dirección">
+                                            <i class="form-group__bar"></i>
+                                        </div>
                                     </div>
-                                </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="phone" placeholder="Teléfono" maxlength="9">
+                                            <i class="form-group__bar"></i>
+                                        </div>
+                                    </div>
                             </div>
-                            <button type="button" class="btn btn-outline-primary waves-effect">Registrar</button>
+
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-outline-primary waves-effect">Registrar</button>
                         </div>
                         
                     </div>
+                    </form>
                 </div>
 
 

@@ -56,7 +56,7 @@
                             </div>
                         </div>
                 </header>
-
+                <form action="/create/asistencia" method="post">
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Nueva Asistencia</h2>
@@ -68,17 +68,10 @@
                                     <br>
 
                                     <div class="form-group form-group--select">
-                                        <div class="select">
-                                            <select class="form-control">
-                                                <option>Select an Option</option>
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
-                                            </select>
-                                        </div>
+
+                                        {{ Form::select('id_docente', [null=>'Seleccione un docente'] + $docentes, null, ['class' => 'select2 form-control']) }}
                                     </div>
+
                                 </div>
                             </div>
                             <div class="row">
@@ -89,12 +82,15 @@
                                     <div class="form-group">
                                         <input type="input" class="form-control" name="date" value="<?=date("Y-m-d H:m:s");?>" disabled>
                                     </div>
+                                        <input type="input" class="form-control" name="date" value="<?=date("Y-m-d H:m:s");?>" style="display:none;">
                                 </div>
                             </div>
-                            <button type="button" class="btn btn-outline-primary waves-effect">Registrar</button>
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-outline-primary waves-effect">Registrar</button>
                         </div>
                         
                     </div>
+                    </form>
                 </div>
 
 

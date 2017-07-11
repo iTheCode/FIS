@@ -56,7 +56,7 @@
                             </div>
                         </div>
                 </header>
-                <form action="/create/horario" method="post">
+                <form action="/edit/horario/{{ $horario->id_horario_clase }}" method="post">
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Nueva Horario</h2>
@@ -68,7 +68,7 @@
                                     <br>
 
                                     <div class="form-group form-group--select">
-                                        {{ Form::select('id_docente', [null=>'Seleccione un docente'] + $docentes, null, ['class' => 'select2 form-control']) }}
+                                        {{ Form::select('id_docente', [null=>'Seleccione un docente'] + $docentes, $horario->id_docente, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
                                 <div class="col-sm-6">
@@ -76,7 +76,7 @@
                                     <br>
 
                                     <div class="form-group form-group--select">
-                                        {{ Form::select('id_curso', [null=>'Seleccione un curso'] + $cursos, null, ['class' => 'select2 form-control']) }}
+                                        {{ Form::select('id_curso', [null=>'Seleccione un curso'] + $cursos, $horario->id_curso, ['class' => 'form-control']) }}
                                     </div>
                                 </div>
 
@@ -94,6 +94,7 @@
                                                 <option>Jueves</option>
                                                 <option>Viernes</option>
                                                 <option>Sábado</option>
+                                                <option selected> {{ $horario->dia_clase }}</option>
                                             </select>
                                         </div>
                                     </div>
@@ -105,14 +106,14 @@
                                     
                                     <div class="col-sm-6">
                                         <div class="form-group">
-                                            <input type="time" name="hour" class="form-control" placeholder="">
+                                            <input type="time" name="hour" class="form-control" placeholder="" value="{{ $horario->hora_clase }}">
                                             <i class="form-group__bar"></i>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             {{ csrf_field() }}
-                            <button type="submit" class="btn btn-outline-primary waves-effect">Registrar</button>
+                            <button type="submit" class="btn btn-outline-primary waves-effect">Guardar</button>
                         </div>
                         
                     </div>

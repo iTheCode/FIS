@@ -57,6 +57,15 @@
                         </div>
                 </header>
 
+                @if(Session::has('status'))
+                <div class="alert {{ Session::get('style') }} alert-dismissible fade show">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                {{ Session::get('message') }}
+                                
+                </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Cursos</h2>
@@ -75,14 +84,16 @@
                             </thead>
                             <tbody>
                             <?php $i = 1;?>
+                            @foreach($cursos as $curso)
                             <tr>
                                 <th scope="row">{{ $i++ }}</th>
-                                <td>POO2</td>
-                                <td>CareCuche</td>
-                                <td>V</td>
+                                <td>{{ $curso->nombre_curso or '' }}</td>
+                                <td>{{ $curso->docente->nombres or '' }}</td>
+                                <td>{{ $curso->ciclo->ciclo}}</td>
 
-                                <td><i class="zmdi zmdi-edit zmdi-hc-fw"></i> <i class="zmdi zmdi-minus zmdi-hc-fw"></i></td>
+                                <td><a href="{{ url('/edit/curso/'.$curso->id_curso) }}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a><a href="{{ url('/delete/curso/'.$curso->id_curso) }}"> <i class="zmdi zmdi-minus zmdi-hc-fw"></i></a></td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table><br>
                         <div class="text-right"><a href="/create/curso"><button class="btn btn-info btn--icon waves-effect"><i class="zmdi zmdi-plus"></i></button></a></div>

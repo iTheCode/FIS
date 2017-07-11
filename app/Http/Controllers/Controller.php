@@ -41,16 +41,17 @@ class Controller extends BaseController
 	public function doCreate()
 	{
 		try {
-			 $data = array(
-	            'name' => Input::get('name'),
-	            'mail' => Input::get('mail'),
-	            'password' => Input::get('password')
-	        );
-	        return User::create([
-	            'name' => $data['name'],
-	            'email' => $data['mail'],
-	            'password' => $data['password']
-        	]);
+        	$d = new User();
+        	$d->name = Input::get('mail');
+        	$d->password = Input::get('password');
+        	if($d->save()){
+        		$s = new Secretaria();
+        		$s->id_user = $d->id;
+        		$s->nombres = Input::get('name');
+        		if($s->save()){
+        			return redirect()->route('dashboard');
+        		}
+        	}
 			
 		} catch (User $e) {
 			return redirect()->route('login')->with('status', $e->getMessage());

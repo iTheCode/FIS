@@ -45,7 +45,7 @@
 
             <section class="content">
                 <header class="content__title">
-                    <h1>Registrar Asistencia</h1>
+                    <h1>Registrar Curso</h1>
 
                     <div class="actions">
                             <div class="dropdown actions__item">
@@ -56,45 +56,45 @@
                             </div>
                         </div>
                 </header>
-
+                @if(Session::has('status'))
+                <div class="alert {{ Session::get('style') }} alert-dismissible fade show">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                {{ Session::get('message') }}
+                                
+                </div>
+                @endif
+                <form action="/create/curso" method="post">
                 <div class="card">
                     <div class="card-header">
-                        <h2 class="card-title">Nueva Asistencia</h2>
+                        <h2 class="card-title">Nuevo Curso</h2>
                     </div>
                     <div class="card-block">
+                            <h3 class="card-block__title">Datos Generales del Curso: </h3><br>
                             <div class="row">
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Docente</h3>
-                                    <br>
-
-                                    <div class="form-group form-group--select">
-                                        <div class="select">
-                                            <select class="form-control">
-                                                <option>Select an Option</option>
-                                                <option>Option 1</option>
-                                                <option>Option 2</option>
-                                                <option>Option 3</option>
-                                                <option>Option 4</option>
-                                                <option>Option 5</option>
-                                            </select>
+                                    <div class="col-sm-4">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" name="curso" placeholder="Nombres del Curso">
+                                            <i class="form-group__bar"></i>
                                         </div>
                                     </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-sm-6">
-                                    <h3 class="card-block__title">Fecha de Ingreso</h3>
-                                    <br>
-
-                                    <div class="form-group">
-                                        <input type="input" class="form-control" name="date" value="<?=date("Y-m-d H:m:s");?>" disabled>
+                                    
+                                    <div class="col-sm-4 form-group form-group--select">
+                                        
+                                        {{ Form::select('id_docente', [null=>'Seleccione un docente'] + $docentes, null, ['class' => 'select2 form-control']) }}
                                     </div>
-                                </div>
+                                    <div class="col-sm-4 form-group form-group--select">
+                                        
+                                        {{ Form::select('id_ciclo', [null=>'Seleccione un ciclo'] + $ciclos, null, ['class' => 'select2 form-control']) }}
+                                    </div>
                             </div>
-                            <button type="button" class="btn btn-outline-primary waves-effect">Registrar</button>
+                            {{ csrf_field() }}
+                            <button type="submit" class="btn btn-outline-primary waves-effect">Crear</button>
                         </div>
                         
                     </div>
+                    </form>
                 </div>
 
 

@@ -56,7 +56,15 @@
                             </div>
                         </div>
                 </header>
-
+                @if(Session::has('status'))
+                <div class="alert {{ Session::get('style') }} alert-dismissible fade show">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                {{ Session::get('message') }}
+                                
+                </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Asistencia</h2>
@@ -75,14 +83,16 @@
                             </thead>
                             <tbody>
                             <?php $i = 1;?>
+                            @foreach($asistencias as $asistencia)
                             <tr>
                                 <th scope="row">{{ $i++ }}</th>
-                                <td>Lino CareCuche</td>
-                                <td>Lunes 15, 08:00 AM</td>
-                                <td>Blanquita</td>
+                                <td>{{ $asistencia->docente->nombres or '' }} {{ $asistencia->docente->apellidos or '' }}</td>
+                                <td>{{ $asistencia->fecha_asistencia or '' }}</td>
+                                <td>{{ $asistencia->secretaria->nombres or '' }}</td>
 
-                                <td></i> <i class="zmdi zmdi-minus zmdi-hc-fw"></i></td>
+                                <td><a href="{{ url('/delete/asistencia/'.$asistencia->id_asistencia) }}"> <i class="zmdi zmdi-minus zmdi-hc-fw"></i></a></td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table><br>
                         <div class="text-right"><a href="/create/asistencia"><button class="btn btn-info btn--icon waves-effect"><i class="zmdi zmdi-plus"></i></button></a></div>

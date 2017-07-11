@@ -28,6 +28,6 @@ class User extends Authenticatable
     ];
 
     public function secretaria(){
-        return $this->hasOne('App\Models\Secretaria', 'id', 'id_user');
+        return $this->hasOne('App\Models\Secretaria', 'id_user', 'id');
     }
 }

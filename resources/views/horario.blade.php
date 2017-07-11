@@ -57,6 +57,15 @@
                         </div>
                 </header>
 
+                @if(Session::has('status'))
+                <div class="alert {{ Session::get('style') }} alert-dismissible fade show">
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">×</span>
+                                </button>
+                                {{ Session::get('message') }}
+                                
+                </div>
+                @endif
                 <div class="card">
                     <div class="card-header">
                         <h2 class="card-title">Horario</h2>
@@ -76,15 +85,17 @@
                             </thead>
                             <tbody>
                             <?php $i = 1;?>
+                            @foreach($horarios as $horario)
                             <tr>
                                 <th scope="row">{{ $i++ }}</th>
-                                <td>Lino</td>
-                                <td>CareCuche</td>
-                                <td>Sto Domingo</td>
-                                <td>+519999999</td>
+                                <td>{{ $horario->curso->nombre_curso or '' }}</td>
+                                <td>{{ $horario->docente->nombres or ''}}</td>
+                                <td>{{ $horario->dia_clase or '' }}, {{ $horario->hora_clase or '' }}</td>
+                                <td>{{ $horario->curso->ciclo->ciclo or ''}}</td>
 
-                                <td><i class="zmdi zmdi-edit zmdi-hc-fw"></i> <i class="zmdi zmdi-minus zmdi-hc-fw"></i></td>
+                                <td><a href="{{ url('/edit/horario/'.$horario->id_horario_clase) }}"><i class="zmdi zmdi-edit zmdi-hc-fw"></i></a><a href="{{ url('/delete/horario/'.$horario->id_horario_clase) }}"> <i class="zmdi zmdi-minus zmdi-hc-fw"></i></a></td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table><br>
                         <div class="text-right"><a href="/create/horario"><button class="btn btn-info btn--icon waves-effect"><i class="zmdi zmdi-plus"></i></button></a></div>

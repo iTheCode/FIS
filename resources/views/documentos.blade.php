@@ -75,14 +75,16 @@
                             </thead>
                             <tbody>
                             <?php $i = 1;?>
+                            @foreach($documentos as $documento)
                             <tr>
                                 <th scope="row">{{ $i++ }}</th>
-                                <td>Lino</td>
-                                <td>CareCuche</td>
-                                <td>Sto Domingo</td>
+                                <td>{{ $documento->descripcion or '' }}</td>
+                                <td>{{ $documento->fecha }}</td>
+                                <td>{{ $documento->secretaria->nombres or ''}}</td>
 
-                                <td><i class="zmdi zmdi-eye zmdi-hc-fw"></i> <i class="zmdi zmdi-edit zmdi-hc-fw"></i> <i class="zmdi zmdi-minus zmdi-hc-fw"></i></td>
+                                <td><a href="/documento/{{ $documento->id_documentacion }}"><i class="zmdi zmdi-eye zmdi-hc-fw"></i></a> <a href="/delete/documento/{{ $documento->id_documentacion }}"><i class="zmdi zmdi-minus zmdi-hc-fw"></i></a></td>
                             </tr>
+                            @endforeach
                             </tbody>
                         </table><br>
                         <div class="text-right"><a href="/create/documento"><button class="btn btn-info btn--icon waves-effect"><i class="zmdi zmdi-plus"></i></button></a></div>
